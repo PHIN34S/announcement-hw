@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>500</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Homework Announcement</string>
+  </property>
+
+  <!-- STYLE OVERRIDE (light mode by default) -->
+  <property name="styleSheet">
+   <string notr="true">
+     QWidget {
+       background-color: #e7f0ff;
+       font-family: Segoe UI;
+     }
+     QPushButton {
+       background-color: #0056d6;
+       color: white;
+       padding: 6px;
+       border-radius: 6px;
+     }
+     QPushButton:hover {
+       background-color: #003f99;
+     }
+     QListWidget {
+       background: #ffffff;
+       border: 1px solid #b0c4de;
+       border-radius: 5px;
+     }
+   </string>
+  </property>
+
+  <layout class="QVBoxLayout" name="verticalLayout">
+
+   <!-- Title -->
+   <item>
+    <widget class="QLabel" name="labelTitle">
+     <property name="text">
+      <string>📘 Homework Announcement</string>
+     </property>
+     <property name="alignment">
