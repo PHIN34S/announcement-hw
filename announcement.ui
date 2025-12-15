@@ -1,49 +1,76 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ui version="4.0">
- <class>Form</class>
- <widget class="QWidget" name="Form">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>600</width>
-    <height>500</height>
-   </rect>
-  </property>
-  <property name="windowTitle">
-   <string>Homework Announcement</string>
-  </property>
+# announcement_ui.py
+from PyQt6.QtCore import Qt
+from PyQt6.QtWidgets import (
+    QWidget, QLabel, QPushButton, QListWidget,
+    QVBoxLayout, QHBoxLayout
+)
 
-  <!-- STYLE OVERRIDE (light mode by default) -->
-  <property name="styleSheet">
-   <string notr="true">
-     QWidget {
-       background-color: #e7f0ff;
-       font-family: Segoe UI;
-     }
-     QPushButton {
-       background-color: #0056d6;
-       color: white;
-       padding: 6px;
-       border-radius: 6px;
-     }
-     QPushButton:hover {
-       background-color: #003f99;
-     }
-     QListWidget {
-       background: #ffffff;
-       border: 1px solid #b0c4de;
-       border-radius: 5px;
-     }
-   </string>
-  </property>
 
-  <layout class="QVBoxLayout" name="verticalLayout">
+class Ui_Form(object):
+    def setupUi(self, Form):
+        Form.setObjectName("Form")
+        Form.resize(600, 500)
+        Form.setWindowTitle("Homework Announcement")
 
-   <!-- Title -->
-   <item>
-    <widget class="QLabel" name="labelTitle">
-     <property name="text">
-      <string>📘 Homework Announcement</string>
-     </property>
-     <property name="alignment">
+        Form.setStyleSheet("""
+            QWidget {
+                background-color: #e7f0ff;
+                font-family: Segoe UI;
+            }
+            QPushButton {
+                background-color: #0056d6;
+                color: white;
+                padding: 6px;
+                border-radius: 6px;
+            }
+            QPushButton:hover {
+                background-color: #003f99;
+            }
+            QListWidget {
+                background: #ffffff;
+                border: 1px solid #b0c4de;
+                border-radius: 5px;
+            }
+        """)
+
+        # Main layout
+        self.verticalLayout = QVBoxLayout(Form)
+
+        # Title
+        self.labelTitle = QLabel("📘 Homework Announcement")
+        self.labelTitle.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.labelTitle.setStyleSheet("font-size: 20px; font-weight: bold;")
+        self.verticalLayout.addWidget(self.labelTitle)
+
+        # Date & Time
+        self.labelDate = QLabel("Date:")
+        self.labelTime = QLabel("Time:")
+
+        self.verticalLayout.addWidget(self.labelDate)
+        self.verticalLayout.addWidget(self.labelTime)
+
+        # Homework list
+        self.homeworkList = QListWidget()
+        self.verticalLayout.addWidget(self.homeworkList)
+
+        # Buttons row 1
+        self.buttonRow1 = QHBoxLayout()
+        self.btnAdd = QPushButton("Add")
+        self.btnDelete = QPushButton("Delete")
+        self.btnRefresh = QPushButton("Refresh")
+
+        self.buttonRow1.addWidget(self.btnAdd)
+        self.buttonRow1.addWidget(self.btnDelete)
+        self.buttonRow1.addWidget(self.btnRefresh)
+        self.verticalLayout.addLayout(self.buttonRow1)
+
+        # Buttons row 2
+        self.buttonRow2 = QHBoxLayout()
+        self.btnAlarm = QPushButton("Alarm")
+        self.btnDarkMode = QPushButton("Dark Mode")
+        self.btnClose = QPushButton("Close")
+
+        self.buttonRow2.addWidget(self.btnAlarm)
+        self.buttonRow2.addWidget(self.btnDarkMode)
+        self.buttonRow2.addWidget(self.btnClose)
+        self.verticalLayout.addLayout(self.buttonRow2)
