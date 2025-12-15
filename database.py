@@ -62,25 +62,4 @@ def update_status(hw_id, checked):
 
 # -------------------------------------------------------------
 # Get all homework items
-# -------------------------------------------------------------
-def get_all_homework():
-    if not os.path.exists(DB_FILE):
-        init_database()
-
-    conn = sqlite3.connect(DB_FILE)
-    c = conn.cursor()
-    c.execute("SELECT id, task, checked FROM homework ORDER BY id ASC")
-    rows = c.fetchall()
-    conn.close()
-    return rows
-
-
-# -------------------------------------------------------------
-# Clear all homework items
-# -------------------------------------------------------------
-def clear_homework():
-    conn = sqlite3.connect(DB_FILE)
-    c = conn.cursor()
-    c.execute("DELETE FROM homework")
-    conn.commit()
-    conn.close()
+# ---------
