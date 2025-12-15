@@ -1,6 +1,6 @@
 # main.py
 import sys
-from PyQt5.QtWidgets import QApplication
+from PyQt6.QtWidgets import QApplication
 from datetime import datetime
 from hello import HomeworkAnnouncement
 from database import init_database
@@ -22,5 +22,5 @@ if __name__ == "__main__":
     # Show window
     window.show()
 
-    # Execute application
-    sys.exit(app.exec_())
+    # Execute application (PyQt6)
+    sys.exit(app.exec())
