@@ -4,22 +4,28 @@ import os
 import sqlite3
 from datetime import datetime
 
-from PyQt6 import uic
-from PyQt6.QtCore import Qt, QTimer, QPropertyAnimation
-from PyQt6.QtGui import QIcon
-from PyQt6.QtWidgets import (
-    QWidget, QInputDialog, QMessageBox, QListWidgetItem, QFileDialog
-)
-
-from win10toast import ToastNotifier   # Windows notifications
-
+from announcement_ui import Ui_Form
 
 class HomeworkAnnouncement(QWidget):
     def __init__(self, date_text, time_text):
         super().__init__()
 
-        # Load UI
-        uic.loadUi("announcement.ui", self)
+        self.ui = Ui_Form()
+        self.ui.setupUi(self)
+
+        # Access widgets via self.ui
+        self.ui.labelDate.setText(f"Date: {date_text}")
+        self.ui.labelTime.setText(f"Time: {time_text}")
+
+        self.ui.btnClose.clicked.connect(self.close)
+        self.ui.btnRefresh.clicked.connect(self.update_time)
+        self.ui.btnAdd.clicked.connect(self.add_homework)
+        self.ui.btnDelete.clicked.connect(self.delete_homework)
+        self.ui.btnAlarm.clicked.connect(self.set_alarm)
+        self.ui.btnDarkMode.clicked.connect(self.toggle_dark_mode)
+
+        self.homeworkList = self.ui.homeworkList
+
 
         # Set window icon (optional)
         if os.path.exists("icons/app_icon.png"):
@@ -58,3 +64,4 @@ class HomeworkAnnouncement(QWidget):
         self.homework_file = "homework.json"
         self.db_file = "homework.db"
         self.init_database()
+
